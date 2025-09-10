@@ -12,6 +12,7 @@ class UserList extends Component
     use WithPagination;
     public $search='';
 
+
     protected $queryString =['search'];
     protected $paginationTheme= "bootstrap";
     protected $listeners = ['userDeleted' => '$refresh',  'userUpdated' => '$refresh',];

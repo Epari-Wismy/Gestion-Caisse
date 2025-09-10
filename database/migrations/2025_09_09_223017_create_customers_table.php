@@ -12,16 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->enum('sexe',['M','F']);
-            $table->string('email',191)->unique();
-            $table->string('telephone',20)->unique();
+
+            $table->string('id_customer', 20)->primary(); // ex: CUST-1234-5678
+            $table->string('nom', 100);
+            $table->string('prenom', 100);
             $table->string('adresse');
-            $table->string('activite');
-            $table->string('is_verified_email',191)->default("");
-            $table->integer('qte_jours');
+            $table->string('telephone', 20);
+            $table->string('email', 100)->unique();
+            $table->boolean('is_verified_mail')->default(false);
+            $table->string('activite')->nullable();
+            $table->string('image')->nullable();
+            $table->enum('etat', ['actif','inactif','bloquer'])->default('actif');
             $table->timestamps();
         });
     }

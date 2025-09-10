@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Customers\CustomerList;
 use App\Livewire\Admin\Users\UserPermission;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\User\Index;
@@ -15,3 +16,8 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::get('/dashboard',DashboardPage::class)->name('admin.dashboard');
+
+Route::prefix('admin')->group(function(){
+    Route::get('/customers', CustomerList::class)->name('admin.customers');
+
+});

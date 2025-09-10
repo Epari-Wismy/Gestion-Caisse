@@ -12,6 +12,100 @@
     <link rel="stylesheet" href="{{asset("../../plugins/fontawesome-free/css/all.min.css")}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset("../../dist/css/adminlte.min.css")}}">
+
+    <style>
+        /* debut*/
+
+        /* fin*/
+        .stepper-wrapper {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .stepper-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            cursor: pointer;
+        }
+        .stepper-item::before {
+            position: absolute;
+            content: "";
+            border-bottom: 2px solid #ccc;
+            width: 100%;
+            top: 15px;
+            left: -50%;
+            z-index: 2;
+        }
+        .stepper-item::after {
+            position: absolute;
+            content: "";
+            border-bottom: 2px solid #ccc;
+            width: 100%;
+            top: 15px;
+            left: 50%;
+            z-index: 2;
+        }
+        .stepper-item .step-counter {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-bottom: 6px;
+            color: white;
+            font-weight: bold;
+        }
+        .stepper-item.active .step-counter {
+            background: #17a2b8;
+        }
+        .stepper-item.completed .step-counter {
+            background: #28a745;
+        }
+        .stepper-item.completed::after {
+            position: absolute;
+            content: "";
+            border-bottom: 2px solid #28a745;
+            width: 100%;
+            top: 15px;
+            left: 50%;
+            z-index: 3;
+        }
+        .stepper-item:first-child::before {
+            content: none;
+        }
+        .stepper-item:last-child::after {
+            content: none;
+        }
+        .step-name {
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        .stepper-content {
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 0.375rem;
+            margin-bottom: 20px;
+        }
+        .progress-sm {
+            height: 8px;
+        }
+        .account-card {
+            border-left: 4px solid #17a2b8;
+            transition: all 0.3s ease;
+        }
+        .account-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
     @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini">
@@ -159,7 +253,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="../../index3.html" class="brand-link">
-            <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="{{asset('../../dist/img/log_koppam01.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">KobPam</span>
         </a>
 
@@ -226,8 +320,8 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{setMenuClass('admin.customers','menu-open')}} ">
+                        <a href="{{route('admin.customers')}}" class="nav-link {{setMenuActive('admin.customers')}}">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Gest. Clients
@@ -237,15 +331,15 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="../layout/top-nav.html" class="nav-link">
+                                <a href="{{route('admin.customers')}}" class="nav-link {{setMenuActive('admin.customers')}}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Enregistrer</p>
+                                    <p>Lister</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                                <a href="../layout/top-nav-sidebar.html" class="nav-link {{setMenuActive('admin.customers')}}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Lister</p>
+                                    <p>Sanctionner</p>
                                 </a>
                             </li>
 
